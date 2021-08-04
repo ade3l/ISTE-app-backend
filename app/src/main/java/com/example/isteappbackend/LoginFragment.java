@@ -44,6 +44,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         login_button.setOnClickListener(this);
         mAuth=FirebaseAuth.getInstance();
         MainActivity2.onLogin.setValue(true);
+        Button signup=view.findViewById(R.id.signUpButton);
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signUpFrag);
+            }
+        });
         return view;
     }
     public static void toHome(){

@@ -36,6 +36,9 @@
             android:id="@+id/action_loginFragment_to_navigation_home"
             app:destination="@id/navigation_home"
             app:popUpTo="@id/mobile_navigation" />
+        <action
+            android:id="@+id/action_loginFragment_to_signUpFrag"
+            app:destination="@id/signUpFrag" />
     </fragment>
     <fragment
         android:id="@+id/loadingFrag"
@@ -59,4 +62,9 @@
         android:name="com.example.isteappbackend.TasksFragment"
         android:label="fragment_tasks"
         tools:layout="@layout/fragment_tasks" />
+    <fragment
+        android:id="@+id/signUpFrag"
+        android:name="com.example.isteappbackend.SignUpFrag"
+        android:label="fragment_sign_up"
+        tools:layout="@layout/fragment_sign_up" />
 </navigation>
