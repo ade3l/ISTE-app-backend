@@ -96,7 +96,7 @@ public class MainActivity2 extends AppCompatActivity {
                             R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                             .build();
 
-                    NavigationUI.setupActionBarWithNavController(MainActivity2.this, navController, appBarConfiguration);
+//                    NavigationUI.setupActionBarWithNavController(MainActivity2.this, navController, appBarConfiguration);
                     NavigationUI.setupWithNavController(binding.navView, navController);
 //                    if(onHome!=null){
 //                        if(!onHome) {
