@@ -1,5 +1,6 @@
 package com.example.isteappbackend;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,11 +18,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.concurrent.Executor;
 
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
@@ -40,7 +38,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         Button login_button;
         email_textView=view.findViewById(R.id.login_email_ip);
         pwd_textView=view.findViewById(R.id.login_pwd_ip);
-        login_button=view.findViewById(R.id.loginButton);
+        login_button=view.findViewById(R.id.forgotButton);
         login_button.setOnClickListener(this);
         mAuth=FirebaseAuth.getInstance();
         MainActivity2.onLogin.setValue(true);
@@ -49,6 +47,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_signUpFrag);
+            }
+        });
+        Button forgotPassword=view.findViewById(R.id.forgotPasswordButton);
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), ForgotPwdAct.class);
+                startActivity(intent);
             }
         });
         return view;
@@ -62,13 +68,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public void onDestroyView() {
         super.onDestroyView();
         MainActivity2.onLogin.setValue(false);
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case(R.id.loginButton):
+            case(R.id.forgotButton):
                 String email=email_textView.getText().toString().trim();
                 String password=pwd_textView.getText().toString().trim();
                 if(!email.equals("") && !password.equals("")) {

@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#000"
-    tools:context=".SignUpFrag"
-    >
-
+    tools:context=".SignUpFrag">
+<!--TODO: Make the student co-oridnator images circular-->
     <TextView
         android:id="@+id/textView"
         android:layout_width="71dp"
@@ -35,7 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signInButton" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView6"
         android:layout_width="106dp"
         android:layout_height="113dp"
@@ -43,6 +42,7 @@
         android:layout_marginTop="31dp"
         android:layout_marginEnd="153dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView1"
         app:srcCompat="@drawable/jayesh" />
@@ -87,14 +87,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView7"
         android:layout_width="106dp"
         android:layout_height="113dp"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="153dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
         app:srcCompat="@drawable/zaina" />
