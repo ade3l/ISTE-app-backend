@@ -46,8 +46,6 @@ public class MainActivity2 extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         binding = ActivityMain2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-//        isAuth = new MutableLiveData<>();
-//        onLogin = new MutableLiveData<>();
         isAuth.setValue(false);
         Observer<Boolean> authObserver= new Observer<Boolean>() {
             @Override
@@ -74,35 +72,14 @@ public class MainActivity2 extends AppCompatActivity {
                 FirebaseUser user=firebaseAuth.getCurrentUser();
                 if(user!=null){
                     bottomNavigationView.setVisibility(VISIBLE);
-//
-//                    if (onLoading) {
-//                        Log.i("mine", "Going to home");
-//                    LoadingFrag.toHome();
-
-//                        onLoading=false;
-//                    }
-//                    else
                     authenticated=true;
                     isAuth.setValue(true);
 
-                    // Passing each menu ID as a set of Ids because each
-                    // menu should be considered as top level destinations.
-                    FragmentManager fragmentManager=getSupportFragmentManager();
-                    Fragment fragment = getSupportFragmentManager().findFragmentByTag("loading");
-//                    fragmentManager.beginTransaction().replace(R.id.nav_host_fragment_activity_main2, HomeFragment.class,null)
-//                            .addToBackStack(null)
-//                            .commit();
                     AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                             R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                             .build();
 
-//                    NavigationUI.setupActionBarWithNavController(MainActivity2.this, navController, appBarConfiguration);
                     NavigationUI.setupWithNavController(binding.navView, navController);
-//                    if(onHome!=null){
-//                        if(!onHome) {
-//                            LoginFragment.toHome();
-//                        }
-//                    }
                 }
                 else{
                     authenticated=false;

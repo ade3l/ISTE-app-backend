@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/adeel/AndroidStudioProjects/ISTEappBackend/app/src/main/res/layout/activity_forgot_pwd.xml" value="0.22" />
-        <entry key="..\:/Users/adeel/AndroidStudioProjects/ISTEappBackend/app/src/main/res/layout/fragment_login.xml" value="0.12552083333333333" />
+        <entry key="..\:/Users/adeel/AndroidStudioProjects/ISTEappBackend/app/src/main/res/layout/fragment_login.xml" value="0.1" />
       </map>
     </option>
   </component>
@@ -17,7 +17,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.22" />
+        <option name="scale" value="0.1" />
       </ProjectState>
     </option>
   </component>

@@ -38,8 +38,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         Button login_button;
         email_textView=view.findViewById(R.id.login_email_ip);
         pwd_textView=view.findViewById(R.id.login_pwd_ip);
-        login_button=view.findViewById(R.id.forgotButton);
-        login_button.setOnClickListener(this);
+        login_button=view.findViewById(R.id.loginButton);
         mAuth=FirebaseAuth.getInstance();
         MainActivity2.onLogin.setValue(true);
         Button signup=view.findViewById(R.id.signUpButton);
@@ -57,6 +56,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
             }
         });
+        login_button.setOnClickListener(this);
+
         return view;
     }
     public static void toHome(){
@@ -73,7 +74,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case(R.id.forgotButton):
+            case(R.id.loginButton):
                 String email=email_textView.getText().toString().trim();
                 String password=pwd_textView.getText().toString().trim();
                 if(!email.equals("") && !password.equals("")) {
