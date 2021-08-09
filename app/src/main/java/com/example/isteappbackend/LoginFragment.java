@@ -40,7 +40,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         pwd_textView=view.findViewById(R.id.login_pwd_ip);
         login_button=view.findViewById(R.id.loginButton);
         mAuth=FirebaseAuth.getInstance();
-        MainActivity2.onLogin.setValue(true);
+        MainActivity2.onLogin=true;
         Button signup=view.findViewById(R.id.signUpButton);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +68,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        MainActivity2.onLogin.setValue(false);
+        MainActivity2.onLogin=false;
     }
 
     @Override

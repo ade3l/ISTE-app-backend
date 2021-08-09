@@ -2,6 +2,7 @@ package com.example.isteappbackend;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
@@ -33,13 +34,15 @@ import static android.view.View.VISIBLE;
 public class MainActivity2 extends AppCompatActivity {
 
     MutableLiveData<Boolean> isAuth= new MutableLiveData<>();;
-    static MutableLiveData<Boolean> onLogin= new MutableLiveData<>();;
+    static MutableLiveData<Boolean> doneLoading= new MutableLiveData<>();
     public static Boolean authenticated;
     private ActivityMain2Binding binding;
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener mAuthStateListener;
     BottomNavigationView bottomNavigationView;
-    static Boolean onLoading;
+    static Boolean onLoading, onLogin;
+    Observer<Boolean> authObserver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,16 +50,30 @@ public class MainActivity2 extends AppCompatActivity {
         binding = ActivityMain2Binding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         isAuth.setValue(false);
-        Observer<Boolean> authObserver= new Observer<Boolean>() {
+        doneLoading.setValue(false);
+        onLogin=false;
+        authObserver= new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
-                if(aBoolean && onLogin.getValue()){
-                    Log.i("mine","Ready to shift to home");
+                if(aBoolean && doneLoading.getValue() && onLoading){
+                    bottomNavigationView.setVisibility(VISIBLE);
+                    LoadingFrag.toHome();
+                }else if(!aBoolean && doneLoading.getValue() && onLoading){
+                    //TODO:Make the transitions smoother
+                    LoadingFrag.toLogin();
+                }
+                else if(aBoolean && onLogin){
+                    bottomNavigationView.setVisibility(VISIBLE);
                     LoginFragment.toHome();
                 }
             }
         };
-        isAuth.observe(this,authObserver);
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                isAuth.observe(MainActivity2.this,authObserver);
+            }
+        }, 1050);
         FragmentContainerView nav=findViewById(R.id.nav_host_fragment_activity_main2);
          bottomNavigationView = findViewById(R.id.nav_view);
         firebaseAuth=FirebaseAuth.getInstance();
@@ -71,13 +88,13 @@ public class MainActivity2 extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull @NotNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user=firebaseAuth.getCurrentUser();
                 if(user!=null){
-                    bottomNavigationView.setVisibility(VISIBLE);
                     authenticated=true;
                     isAuth.setValue(true);
 
                     AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                             R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
                             .build();
+//                    NavController navController = Navigation.findNavController(MainActivity2.this, R.id.nav_host_fragment_activity_main2);
 
                     NavigationUI.setupWithNavController(binding.navView, navController);
                 }
